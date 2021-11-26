@@ -1,10 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import GetInfo from "./components/get-info";
-
-const App = () => {
-  return <p>products</p>;
-};
+import App from "./components/app/index";
 
 ReactDOM.render(
   <React.StrictMode>
