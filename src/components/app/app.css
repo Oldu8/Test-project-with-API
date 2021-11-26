@@ -1,3 +1,6 @@
 body {
-  background-color: aquamarine;
+  background: linear-gradient(to bottom, #030d68, #5a0070, #810c64);
+  height: 100%;
+  min-height: 100vh;
+  margin: 0;
 }

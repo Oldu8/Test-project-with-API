@@ -5,7 +5,13 @@ import ItemList from "../item-list/";
 import "./app.css";
 
 const App = () => {
-  return <p>products</p>;
+  return (
+    <div>
+      <Header />
+      <Slider />
+      <ItemList />
+    </div>
+  );
 };
 
 export default App;
