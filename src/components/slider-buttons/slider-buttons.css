@@ -2,6 +2,16 @@
   width: 5%;
   height: 9%;
   border-radius: 50%;
-  background-color: rgb(95, 80, 20);
+  background-color: rgb(199, 163, 19);
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slider__buton:first-child {
+  left: 0;
+}
+
+.slider__buton:last-child {
+  right: 0;
 }

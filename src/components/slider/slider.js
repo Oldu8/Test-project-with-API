@@ -1,28 +1,61 @@
-import React from "react";
+import React, { Component } from "react";
 import "./slider.css";
 import SliderButton from "../slider-buttons/";
+import GetInfo from "../get-info";
 
-const Header = () => {
-  const nextFilm = () => {
-    console.log("Next film");
+export default class Header extends Component {
+  getInfoService = new GetInfo();
+
+  state = {
+    currentFilmName: null,
+    filmID: null,
+    sliderClassName: "slider__content",
   };
-  const prevFilm = () => {
-    console.log("Prev film");
-  };
 
-  return (
-    <div className="slider__block">
-      <SliderButton
-        // func={() => prevFilm}
-        direction={"prev"}
-      />
-      <div className="slider__content"></div>
-      <SliderButton
-        //  func={() => nextFilm}
-        direction={"next"}
-      />
-    </div>
-  );
-};
+  constructor() {
+    super();
+    this.updateFilm();
+  }
 
-export default Header;
+  updateFilm() {
+    this.getInfoService.getFilm(2).then((film) => {
+      this.setState({
+        currentFilmName: film.title,
+        filmID: film.episode_id,
+      });
+    });
+  }
+
+  render() {
+    const { currentFilmName, filmID, sliderClassName } = this.state;
+
+    const changeFilm = (dir) => {
+      console.log(dir);
+      if (dir === "next") {
+        this.setState({
+          filmID: parseInt(this.setState.filmID) + 1,
+        });
+      } else {
+        this.setState({
+          filmID: parseInt(this.setState.filmID) - 1,
+        });
+      }
+    };
+
+    return (
+      <div className="slider__block">
+        <SliderButton
+          changeFilmFunc={(i) => changeFilm(i)}
+          direction={"prev"}
+        />
+        <div className={sliderClassName}>
+          {currentFilmName} {filmID}
+        </div>
+        <SliderButton
+          changeFilmFunc={(i) => changeFilm(i)}
+          direction={"next"}
+        />
+      </div>
+    );
+  }
+}

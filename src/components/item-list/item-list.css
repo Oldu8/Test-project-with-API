@@ -1,0 +1,10 @@
+.header__ItemList {
+  color: floralwhite;
+  text-align: center;
+}
+
+.film__list {
+  border: 2px solid seashell;
+  width: 75%;
+  margin: 0 auto;
+}

@@ -1,10 +1,12 @@
 .header__block {
-  background-color: purple;
-  color: aliceblue;
+  background: no-repeat center/80%
+    url(https://preview.redd.it/1iw0tfd0eax41.jpg?auto=webp&s=c929962004dc480a876fcb478258bce12cfb42c6);
+  color: rgb(255, 255, 255);
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 700;
   text-align: center;
-  padding: 30px 0;
+  height: 200px;
+  text-shadow: rgb(0, 20, 20) 0 0 10px;
   width: 100%;
   margin-bottom: 30px;
 }
