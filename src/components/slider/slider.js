@@ -9,7 +9,6 @@ export default class Header extends Component {
   state = {
     currentFilmName: null,
     filmID: null,
-    sliderClassName: "slider__content",
   };
 
   constructor() {
@@ -18,7 +17,7 @@ export default class Header extends Component {
   }
 
   updateFilm() {
-    this.getInfoService.getFilm(2).then((film) => {
+    this.getInfoService.getFilm(1).then((film) => {
       this.setState({
         currentFilmName: film.title,
         filmID: film.episode_id,
@@ -27,17 +26,32 @@ export default class Header extends Component {
   }
 
   render() {
-    const { currentFilmName, filmID, sliderClassName } = this.state;
+    const { currentFilmName, filmID } = this.state;
 
     const changeFilm = (dir) => {
-      console.log(dir);
-      if (dir === "next") {
+      if (filmID === 0) {
+        console.log("id < 0");
         this.setState({
-          filmID: parseInt(this.setState.filmID) + 1,
+          filmID: 9,
+        });
+      }
+      if (filmID === 10) {
+        console.log("id > 9");
+        this.setState({
+          filmID: 5,
+        });
+      }
+      if (dir === "next") {
+        this.setState(function (state) {
+          return {
+            filmID: state.filmID + 1,
+          };
         });
       } else {
-        this.setState({
-          filmID: parseInt(this.setState.filmID) - 1,
+        this.setState(function (state) {
+          return {
+            filmID: state.filmID - 1,
+          };
         });
       }
     };
@@ -48,7 +62,12 @@ export default class Header extends Component {
           changeFilmFunc={(i) => changeFilm(i)}
           direction={"prev"}
         />
-        <div className={sliderClassName}>
+        <div
+          className="slider__content"
+          style={{
+            backgroundImage: `url('http://localhost:3000//images/${filmID}.jpg')`,
+          }}
+        >
           {currentFilmName} {filmID}
         </div>
         <SliderButton
